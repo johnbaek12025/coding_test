@@ -1,4 +1,4 @@
-  """
+"""
 Find Pivot Index leet code 724
 
 ex) 
@@ -31,6 +31,25 @@ def pivotIndex(nums: list) -> int:
             return i
         prvnum = num
 
-nums = [1, 8, 2, 9, 2, 3, 6]
+# nums = [1, 8, 2, 9, 2, 3, 6]
 
-print(pivotIndex(nums))
+# print(pivotIndex(nums))
+
+"""
+leet code 209 Minimum Size Subarray Sum
+
+target num = 7
+nums = [3, 4, 2, 1, 3, 2]에서 target을 만족하는 
+짧은 subarray를 길이를 return을 하는것 -> O(n)
+
+전제조건은 nums array가 positive integer인 경우에만 
+sliding을 사용 할 수 있다.
+"""
+def minSubArrayLen(target: int, nums: list) -> int:
+    left = 0
+    right = len(nums) - 1
+
+    for i in range(len(nums)):
+        add = sum(nums[:i])
+        print(add)     
+print('---',minSubArrayLen(target = 7, nums = [3, 4, 2, 1, 3, 2]))
