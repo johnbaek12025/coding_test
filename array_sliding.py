@@ -31,9 +31,9 @@ def pivotIndex(nums: list) -> int:
             return i
         prvnum = num
 
-# nums = [1, 8, 2, 9, 2, 3, 6]
+nums = [1, 8, 2, 9, 2, 3, 6]
 
-# print(pivotIndex(nums))
+print(pivotIndex(nums))
 
 """
 leet code 209 Minimum Size Subarray Sum
@@ -45,11 +45,21 @@ nums = [3, 4, 2, 1, 3, 2]에서 target을 만족하는
 전제조건은 nums array가 positive integer인 경우에만 
 sliding을 사용 할 수 있다.
 """
-def minSubArrayLen(target: int, nums: list) -> int:
-    left = 0
-    right = len(nums) - 1
-
+def minSubArrayLen(nums, target):
+    curSum = 0
+    prev = 0
+    ans = float("inf")
     for i in range(len(nums)):
-        add = sum(nums[:i])
-        print(add)     
-print('---',minSubArrayLen(target = 7, nums = [3, 4, 2, 1, 3, 2]))
+        curSum += nums[i]
+        # the while loop below is equivalent to while prev <= i and curSum >= target:
+        while curSum >= target:
+            ans = min(ans, i - prev + 1)
+            # below order is important: the decrement of curSum and increment of prev
+            curSum -= nums[prev]
+            prev += 1
+    if ans == float("inf"):
+        return 0
+    else:
+        return ans  
+
+print(minSubArrayLen(target = 4, nums = [1,4,4]))
